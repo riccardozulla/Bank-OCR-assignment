@@ -14,7 +14,7 @@ public class ParseCellTest {
                         " _ " +
                         "| |" +
                         "|_|";
-        assertEquals("1", new Cell(zeroAsText).toString());
+        assertEquals("0", new Cell(zeroAsText).toString());
     }
 
     @Test
