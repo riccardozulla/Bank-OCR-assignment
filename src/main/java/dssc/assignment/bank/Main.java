@@ -5,9 +5,15 @@ import java.nio.file.Path;
 
 public class Main {
     public static void main(String... args) throws IOException {
-        EntryReader parser = new EntryReader(Path.of(args[0]));
-        Entry entry = parser.readEntry();
-        AccountNumber accountNumber = new AccountNumber(entry);
-        System.out.println(accountNumber.toString());
+        EntryReader reader = new EntryReader(Path.of(args[0]));
+        reader.readAllEntries().stream()
+                .map(AccountNumber::new)
+                .forEach(accountNumber -> {
+                    if (accountNumber.checksum() == 0) {
+                        System.out.println(accountNumber);
+                    } else {
+                        System.out.println(accountNumber + " ERR");
+                    }
+                });
     }
 }

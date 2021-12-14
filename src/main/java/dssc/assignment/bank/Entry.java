@@ -23,4 +23,27 @@ public class Entry {
         cells.forEach(cell -> stringBuilder.append(cell.toString()));
         return stringBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Entry entry = (Entry) o;
+
+        return cells.equals(entry.cells);
+    }
+
+    @Override
+    public int hashCode() {
+        return cells.hashCode();
+    }
+
+    public int customSum() {
+        int sum = 0;
+        for (int i = 0; i < cells.size(); i++) {
+            sum += cells.get(i).asNumber()*(cells.size()-i);
+        }
+        return sum;
+    }
 }
